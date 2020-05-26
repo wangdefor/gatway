@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="test" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <commentGenerator type="org.mybatis.generator.internal.CimenCommentGenerator">
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressAllComments" value="false"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.0.2.8/ways" userId="cimendev" password="123456">
+        </jdbcConnection>
+        <!-- java类型处理器
+            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+        -->
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.cimen.ways.component.authentication.service.launcher.model"
+                            targetProject="../component-inside-authentication-service-launcher/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <!-- 设置一个根对象，
+                如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
+                注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
+                    1，属性名相同，类型相同，有相同的getter/setter方法；
+             -->
+            <property name="rootClass" value="com.cimen.frank.dal.model.BaseModel"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.cimen.ways.component.authentication.service.launcher.dal"
+                         targetProject="../component-inside-authentication-service-launcher/src/main/resources/mybatis/mapper">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.cimen.ways.component.authentication.service.launcher.dal"
+                             targetProject="../component-inside-authentication-service-launcher/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 可以为所有生成的接口添加一个父接口，但是MBG只负责生成，不负责检查-->
+            <property name="rootInterface" value="com.cimen.frank.dal.mapper.BaseMapper"/>
+
+        </javaClientGenerator>
+
+        <!-- 要生成哪些表 -->
+
+        <table tableName="oauth_client_details" domainObjectName="OauthClientDetails">
+        </table>
+    </context>
+</generatorConfiguration>

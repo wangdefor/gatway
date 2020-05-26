@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: component-gateway-server
+  cloud:
+    config:
+      uri: http://configcenter6.xymtest.com
+  sleuth:
+    sampler:
+      percentage: 1.0

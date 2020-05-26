@@ -1,0 +1,67 @@
+# bootstrap.yml文件中的内容不能放到application.yml中，否则config部分无法被加载
+# 因为config部分的配置先于application.yml被加载，而bootstrap.yml中的配置会先于application.yml加载
+server:
+  port: 7085
+spring:
+  application:
+    name: component-inside-authentication-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:native}
+
+# feign相关配置
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled:  true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# jwt加密配置
+# jwt加密配置
+encrypt:
+  key-store:
+    location: dev.jks
+    alias: dev
+    password: cimendev
+
+ignore:
+  urls:
+    - /
+    - /error
+    - /favicon.ico
+    - /**/*swagger*/**
+    - /v2/api-docs
+    - /csrf
+    - /actuator/**
+    - /hystrix.sender
+    - /v1/sms/**
+    - /v1/user/anonymousUser/**
+    - /v1/tenant/anonymousUser/**
+    - /v1/user/checkExist/**
+    - /v1/user/updatePassword
+    - /v1/menu/anonymousUser/**
+    - /v1/code/**
+    - /v1/attachment/download
+    - /v1/log/**
+    - /authentication/**
+    - /v1/authentication/**
+    - /**/*.css
+    - /**/*.js
+    - /social
+    - /signin
+    - /signup
+    - /info
+    - /health
+    - /metrics/**
+    - /loggers/**
+

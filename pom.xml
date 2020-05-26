@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>component-inside-authentication-service-launcher</module>
+    </modules>
+
+    <parent>
+        <groupId>com.cimen.ways</groupId>
+        <artifactId>ways-parent</artifactId>
+        <version>2.2.5</version>
+    </parent>
+
+    <groupId>com.cimen.ways</groupId>
+    <artifactId>component-inside-authentication-service</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0.0</version>
+
+    <properties>
+        <component-inside-authentication-service.version>1.0.0.0</component-inside-authentication-service.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cimen.ways</groupId>
+                <artifactId>component-dal</artifactId>
+                <version>2.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cimen.ways</groupId>
+                <artifactId>component-util</artifactId>
+                <version>2.2.5</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+</project>

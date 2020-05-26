@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: component-gateway-server
+  cloud:
+    config:
+      uri: http://configcenter.xympro.com
+
+  sleuth:
+    sampler:
+      percentage: 0.3
